@@ -3,6 +3,7 @@
 ## Demos 
 - [Chessboard Demo] (chessboard)
 - [CIrcles on screen](circles)
+- [square around edge of screen](square)
 
 ## projects
 - first assignment will go here
