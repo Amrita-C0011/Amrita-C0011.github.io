@@ -13,7 +13,7 @@ let state = RED;
 let lastSwitchedTime = 0 ; 
 let greenLightD = 3000;
 let redlightD = 3000;
-let yellowLightD = 500;
+let yellowLightD = 700;
 
 async function setup() {
   createCanvas(600, 600);
