@@ -11,11 +11,25 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+// bird
+let bird;
+
+
+// game default
+let gameOver = false;
+let gameStart = false; 
+let score = 0;
+
+//obstacles 
+let obstacles;
+let HorDistance; // Space between each new obstacle
+let VerDistance;
 
 
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
+  HorDistance = width / 3;
 
 }
 
