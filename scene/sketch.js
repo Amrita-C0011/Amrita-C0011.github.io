@@ -31,6 +31,18 @@ async function setup() {
   createCanvas(windowWidth, windowHeight);
   HorDistance = width / 3;
 
+  resetGame();
+  // Game loop dosen't begin until SPACE is pressed
+  noLoop(); 
+
+}
+
+function resetGame() {
+  score = 0;
+  gameOver = false;
+
+  
+
 }
 
 
