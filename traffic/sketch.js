@@ -16,7 +16,7 @@ let redlightD = 3000;
 let yellowLightD = 700;
 
 async function setup() {
-  createCanvas(600, 600);
+  createCanvas(600, 500);
 }
 
 function draw() {
