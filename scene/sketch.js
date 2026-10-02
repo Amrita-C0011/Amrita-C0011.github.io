@@ -18,7 +18,7 @@ let pipes = []; // creating an array, they're similar to lists in python
 
 
 
-
+// khgcgwekgfuer
 async function setup() {
   createCanvas(windowWidth, windowHeight);
   bird = new Bird (20, height/2);
