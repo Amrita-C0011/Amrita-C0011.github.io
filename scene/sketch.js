@@ -10,11 +10,18 @@
 //
 // Extra for Experts:
 // - Learned about class and implemented it in the code
-//-learned about arrays and implemented in the code
+// -learned about arrays and implemented in the code
 
 let bird;
 let pipes = []; // creating an array, they're similar to lists in python
 //without an array the game could only display one pipe each reset
+
+if (mouseClicked) {
+  loop();
+}
+else {
+  noLoop();
+}
 
 
 
