@@ -8,7 +8,9 @@
 - [Bouncing circles](circledemo)
 - [perlin noise](noise)
 - [terrain generation](terrain)
+- [ collision library demo](Collision)
 
 
 ## projects
 - [Interactive scene](scene)
+- [object notations and arrays](candy crush)
