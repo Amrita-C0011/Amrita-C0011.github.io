@@ -1,18 +1,15 @@
 // Interactive scene - Flappy Bird rip off ver.
-// Amrita C.// September 22nd
-//
-// References:
-//- https://www.youtube.com/watch?v=cXgA1d_E-jY ( Video tutorial)
-//- https://editor.p5js.org/jonfroehlich/sketches/sFOMDuDaw (written tutorial)
-//- https://gameprogrammingpatterns.com/game-loop.html (To learn more about game loops)
-//- https://www.youtube.com/watch?v=5AWRivBk0Gw (to learn about classes and objects)
-//- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array (to learn about arrays)
+// Amrita C.
+// october 16th
 
-// Side note: for every new thing I learned, I added notes as comments,, which I had to remove later to keep the code clean. But if you wanna look at them my "final draft" version on Github should have it :)
-//
-// Extra for Experts:
-// - Learned about class and implemented it in the code
-// -learned about arrays and implemented in the code
+//improvements:
+//- mouse interaction start and end screen 
+//- bg image and characters
+//- add object notations as a replacement for this.blah 
+//- fix up comments 
+//- proper use of whitespace
+//- keep a clean draw function, createexternal functions to keep it concisee 
+// - add sound effects for extra for experts
 
 let bird;
 let pipes = []; 
