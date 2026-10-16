@@ -13,6 +13,7 @@
 
 let bird;
 let pipes = []; 
+let gameStart = false ; 
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -23,9 +24,31 @@ async function setup() {
 
 function draw() { 
   background(220);
+  pipesArray();
   
+  bird.show();
+  bird.update();
+  
+  if (gameStart === false) {
+    startScreen();
+  }
 
-  // display pipes continously 
+
+  if (frameCount % 200 === 0 ) {
+    pipes.push(new Pipe()); // add it back 
+  }
+}
+
+function startScreen() {
+  if (gameStart === false) {
+    background (0);
+    fill ("white");
+    text ("Click anywhere on the screen to begin :)", );
+    textSize (50);
+  }
+}
+
+function pipesArray () {
   for (let i = pipes.length- 1 ; i>= 0; i--) { 
     pipes[i].show();
     pipes[i].update();
@@ -38,16 +61,7 @@ function draw() {
       pipes.splice(i,1); //Take out a pipe
     }
   }
-
-  bird.show();
-  bird.update();
-
-
-  if (frameCount % 200 === 0 ) {
-    pipes.push(new Pipe()); // add it back 
-  }
 }
-
 function keyPressed () {
   if (key === ' ') {
     bird.goUp();
