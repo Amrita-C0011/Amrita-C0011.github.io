@@ -23,6 +23,7 @@ async function setup() {
 
 function draw() { 
   background(220);
+  
 
   // display pipes continously 
   for (let i = pipes.length- 1 ; i>= 0; i--) { 
