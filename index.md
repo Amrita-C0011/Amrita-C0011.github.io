@@ -9,8 +9,8 @@
 - [perlin noise](noise)
 - [terrain generation](terrain)
 - [ collision library demo](Collision)
+- [images and sound fx](loading assets)
 
 
 ## projects
-- [Interactive scene](scene)
-- [object notations and arrays](candy crush)
+- [Interactive scene + object notation and arrays ](scene)
