@@ -21,7 +21,6 @@ async function setup() {
   pipes.push(new Pipe());
 }
 
-
 function draw() { 
   background(220);
   pipesArray();
@@ -39,14 +38,21 @@ function draw() {
   }
 }
 
+// creating a start screen
 function startScreen() {
   if (gameStart === false) {
     background (0);
     fill ("white");
-    text ("Click anywhere on the screen to begin :)", );
+    text ("Click anywhere on the screen to begin :)", width/2, height/2);
     textSize (50);
+    textAlign(CENTER);
+  
   }
 }
+function mouseClicked(){
+  gameStart = true;
+} 
+
 
 function pipesArray () {
   for (let i = pipes.length- 1 ; i>= 0; i--) { 
@@ -68,8 +74,8 @@ function keyPressed () {
   }
 }
 
-// defining classes
 
+// defining classes
 class Bird {
   constructor (x,y) {
     this.x = x;
