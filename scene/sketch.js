@@ -5,7 +5,7 @@
 //improvements:
 //- mouse interaction start and end screen 
 //- bg image and characters
-//- add object notations as a replacement for this.blah 
+//- add object notations
 //- fix up comments 
 //- proper use of whitespace
 //- keep a clean draw function, createexternal functions to keep it concisee 
@@ -14,6 +14,15 @@
 let bird;
 let pipes = []; 
 let gameStart = false ; 
+
+let birdImage;  
+// let birdImage = {
+//   x: width/2,
+//   y: height/2,
+//   w: width,
+//   h: height,
+// };
+
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -31,7 +40,6 @@ function draw() {
   if (gameStart === false) {
     startScreen();
   }
-
 
   if (frameCount % 200 === 0 ) {
     pipes.push(new Pipe()); // add it back 
@@ -77,20 +85,25 @@ function keyPressed () {
 
 // defining classes
 class Bird {
-  constructor (x,y) {
+   constructor (x,y) {
     this.x = x;
     this.y = y;
     this.width = 30;
     this.height = 10;
-
+   
     this.gravity = 0.6; // bird falls when nothing is done to it
     this.lift = -15; // controls the strength of the jump
     this.velocity = 0; // still at the start
+
+    birdImage = await loadImage ("yellowbird-midflap.png");
+    image(birdImage,width/2,height/2);
   }
 
   show() {   
     fill (0);
-    rect(this.x, this.y, 80,20);
+    
+    
+ 
   }
 
   update () {
