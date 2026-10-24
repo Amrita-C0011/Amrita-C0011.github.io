@@ -2,9 +2,11 @@
 // Amrita C.
 // october 16th
 
+//https://editor.p5js.org/jm8785/sketches/r0DMO5Mqj
+
 //improvements:
-//- mouse interaction start and end screen 
-//- bg image and characters
+// - counter not working 
+//fix up screen size 
 //- add object notations
 //- fix up comments 
 //- proper use of whitespace
@@ -16,22 +18,26 @@ let pipes = [];
 let gameStart = false ; 
 
 let birdImage;  
-// let birdImage = {
-//   x: width/2,
-//   y: height/2,
-//   w: width,
-//   h: height,
-// };
+let bg;
+let pipeimg;
+
+let counter;
 
 
 async function setup() {
+  bg = await loadImage ("background-day.png");
   createCanvas(windowWidth, windowHeight);
+
   bird = new Bird (20, height/2);
   pipes.push(new Pipe());
+
+
+  birdImage = await loadImage ("yellowbird-midflap.png");
+  pipeimg = await loadImage ("pipe-green.png");
 }
 
 function draw() { 
-  background(220);
+  background(bg);
   pipesArray();
   
   bird.show();
@@ -68,7 +74,7 @@ function pipesArray () {
     pipes[i].update();
 
     if (pipes[i].hits(bird)) {
-      console.log("HiT");
+      console.log(counter);
     }
 
     if (pipes[i].done()) {
@@ -95,14 +101,11 @@ class Bird {
     this.lift = -15; // controls the strength of the jump
     this.velocity = 0; // still at the start
 
-    birdImage = await loadImage ("yellowbird-midflap.png");
-    image(birdImage,width/2,height/2);
   }
 
   show() {   
-    fill (0);
-    
-    
+    image(birdImage,this.x,this.y);
+ 
  
   }
 
@@ -127,35 +130,31 @@ class Bird {
 }
 
 
-class Pipe {
+class Pipe{
 
   constructor (x,y) {
     this.top = random(height/2); 
     this.bottom = random(height/2); 
     this.x = width;
-    this.w = 20;
+    this.w = 40;
     this.speed = 5;
 
     this.hightlight = false;
   }
   
   hits(bird) {
+    counter = 0;
     if (bird.y < this.top || bird.y > height - this.bottom ) {
       if (bird.x > this.x && bird.x < this.x + this.w ) {
-        this.hightlight = true; 
-        return true;
-      }
-    }
-    return false;
+        counter+=1; 
+  }
+}
   }
 
   show(){
-    fill (128,128,128);
-    if (this.hightlight) {
-      fill (255,0,0);
-    }
-    rect(this.x,0,this.w,this.top);
-    rect(this.x,height- this.bottom, this.w,this.bottom);
+
+    image(pipeimg, this.x,0,this.w,this.top);
+    image(pipeimg, this.x,height- this.bottom, this.w,this.bottom);
   }
 
 
