@@ -116,13 +116,13 @@ function keyPressed () {
 // defining classes
 
 class Bird {
-   constructor (x,y) {
+  constructor (x,y) {
     this.x = x;
     this.y = y;
     this.width = 30;
     this.height = 10;
    
-  // settings of the bird character
+    // settings of the bird character
     this.gravity = gameSettings.gravity; 
     this.lift = gameSettings.lift; 
     this.velocity = gameSettings.velocity; 
