@@ -4,7 +4,11 @@
 
 //references:
 //https://editor.p5js.org/jm8785/sketches/r0DMO5Mqj
- 
+
+//Exta for experts:
+// used classes to organize my code
+// used the smooth() function to soften the edges of the pipe images
+// 
 
 //defining the global scope variables
 
@@ -15,6 +19,7 @@ let gameStart = false ;
 let birdImage;  
 let pipeimg;
 let bg;
+let font;
 
 let counter = 0;
 
@@ -97,6 +102,7 @@ function pipesArray () {
 
     if (pipes[i].hits(bird) && !pipes[i].highlight) {
       counter++;
+
       pipes[i].highlight=true;
       console.log(counter);
     }
@@ -154,7 +160,6 @@ class Bird {
   }
 }
 
-
 class Pipe{
   constructor (x,y) {
     this.top = random(height/2); 
@@ -171,6 +176,7 @@ class Pipe{
     if (bird.y < this.top || bird.y > height - this.bottom ) {
       if (bird.x > this.x && bird.x < this.x + this.w ) {
         this.hightlight = true; 
+        
         return true;
       }
     }
@@ -179,10 +185,10 @@ class Pipe{
 
   show(){
 
+    smooth();
     image(pipeimg, this.x,0,this.w,this.top);
     image(pipeimg, this.x,height- this.bottom, this.w,this.bottom);
   }
-
 
   update () {
     this.x -= this.speed; // makes the pipes move to the left constantly
