@@ -2,38 +2,45 @@
 // Amrita C.
 // october 16th
 
+//references:
 //https://editor.p5js.org/jm8785/sketches/r0DMO5Mqj
+ 
 
-//improvements:
-// - counter not working 
-//fix up screen size 
-//- add object notations
-//- fix up comments 
-//- proper use of whitespace
-//- keep a clean draw function, createexternal functions to keep it concisee 
-// - add sound effects for extra for experts
+//defining the global scope variables
 
 let bird;
 let pipes = []; 
 let gameStart = false ; 
 
 let birdImage;  
-let bg;
 let pipeimg;
+let bg;
 
 let counter = 0;
 
+let gameSettings = {
+  gravity: 0.6,
+  lift:-15,
+  velocity:0,
+  speed:5,
+};
+
+//functions
 
 async function setup() {
+
+  // setting up the canvas and bg image
   bg = await loadImage ("background-day.png");
   createCanvas(windowWidth, windowHeight);
 
+  //adding in the character and obstacles
+  birdImage = await loadImage ("yellowbird-midflap.png");
+  pipeimg = await loadImage ("pipe-green.png"); 
+
+  //bird and pipe loop 
   bird = new Bird (20, height/2);
   pipes.push(new Pipe());
-
-
-  birdImage = await loadImage ("yellowbird-midflap.png");
-  pipeimg = await loadImage ("pipe-green.png");
+ 
 }
 
 function draw() { 
@@ -42,20 +49,19 @@ function draw() {
   
   bird.show();
   bird.update();
-  
+
   if (gameStart === false) {
     startScreen();
   }
-
+  
   if (frameCount % 200 === 0 ) {
-    pipes.push(new Pipe()); // add it back 
+    pipes.push(new Pipe()); 
   }
 
   gameOver();
 }
 
-// creating a start screen
-function startScreen() {
+function startScreen() { 
   if (gameStart === false) {
     background (0);
     fill ("white");
@@ -65,6 +71,7 @@ function startScreen() {
   
   }
 }
+
 function mouseClicked(){
   gameStart = true;
 } 
@@ -76,6 +83,9 @@ function gameOver(){
   textAlign(CENTER);
   if (counter === 3){
     noLoop();
+    background(0);
+    fill("white");
+    text("GAME OVER", width/2, height/2);
 
   }
 }
@@ -92,18 +102,19 @@ function pipesArray () {
     }
 
     if (pipes[i].done()) {
-      pipes.splice(i,1); //Take out a pipe
+      pipes.splice(i,1); 
     }
   }
 }
+
 function keyPressed () {
   if (key === ' ') {
     bird.goUp();
   }
 }
 
-
 // defining classes
+
 class Bird {
    constructor (x,y) {
     this.x = x;
@@ -111,19 +122,19 @@ class Bird {
     this.width = 30;
     this.height = 10;
    
-    this.gravity = 0.6; // bird falls when nothing is done to it
-    this.lift = -15; // controls the strength of the jump
-    this.velocity = 0; // still at the start
-
+  // settings of the bird character
+    this.gravity = gameSettings.gravity; 
+    this.lift = gameSettings.lift; 
+    this.velocity = gameSettings.velocity; 
   }
 
   show() {   
-    image(birdImage,this.x,this.y);
- 
- 
+    image(birdImage,this.x,this.y); //initiaizing the loading of the bird character
   }
 
   update () {
+    // physics / logical functions: 
+
     this.velocity += this.gravity;// Velocity increases due to gravity
     this.velocity*= 0.9; // air resistance to keep the jump strength limited
     this.y += this.velocity; // y changes relative to velocity
@@ -145,13 +156,12 @@ class Bird {
 
 
 class Pipe{
-
   constructor (x,y) {
     this.top = random(height/2); 
     this.bottom = random(height/2); 
     this.x = width;
     this.w = 40;
-    this.speed = 5;
+    this.speed = gameSettings.speed;
 
     this.hightlight = false;
   }
