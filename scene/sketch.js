@@ -21,7 +21,7 @@ let birdImage;
 let bg;
 let pipeimg;
 
-let counter;
+let counter = 0;
 
 
 async function setup() {
@@ -50,6 +50,8 @@ function draw() {
   if (frameCount % 200 === 0 ) {
     pipes.push(new Pipe()); // add it back 
   }
+
+  gameOver();
 }
 
 // creating a start screen
@@ -59,7 +61,7 @@ function startScreen() {
     fill ("white");
     text ("Click anywhere on the screen to begin :)", width/2, height/2);
     textSize (50);
-    textAlign(CENTER);
+    textAlign(TOP,RIGHT);
   
   }
 }
@@ -67,13 +69,25 @@ function mouseClicked(){
   gameStart = true;
 } 
 
+function gameOver(){
+  fill ("red");
+  text ("Total hits:" + counter, width/2, height/2);
+  textSize (50);
+  textAlign(CENTER);
+  if (counter === 3){
+    noLoop();
+
+  }
+}
 
 function pipesArray () {
   for (let i = pipes.length- 1 ; i>= 0; i--) { 
     pipes[i].show();
     pipes[i].update();
 
-    if (pipes[i].hits(bird)) {
+    if (pipes[i].hits(bird) && !pipes[i].highlight) {
+      counter++;
+      pipes[i].highlight=true;
       console.log(counter);
     }
 
@@ -143,13 +157,15 @@ class Pipe{
   }
   
   hits(bird) {
-    counter = 0;
+    
     if (bird.y < this.top || bird.y > height - this.bottom ) {
       if (bird.x > this.x && bird.x < this.x + this.w ) {
-        counter+=1; 
-  }
-}
-  }
+        this.hightlight = true; 
+        return true;
+      }
+    }
+    return false;
+  } 
 
   show(){
 
