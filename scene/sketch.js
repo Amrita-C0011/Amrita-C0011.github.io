@@ -1,6 +1,6 @@
-// Interactive scene - Flappy Bird rip off ver.
+// object notations and arrays - Flappy Bird rip off ver.
 // Amrita C.
-// october 16th
+// october 26th
 
 //references:
 //https://editor.p5js.org/jm8785/sketches/r0DMO5Mqj
