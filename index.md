@@ -10,6 +10,8 @@
 - [terrain generation](terrain)
 - [ collision library demo](Collision)
 - [images and sound fx](loading assets)
+- [grid demo] (grid) 
+- [rectangular grid] (rectgrid)
 
 
 ## projects
