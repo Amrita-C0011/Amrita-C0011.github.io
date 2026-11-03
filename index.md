@@ -12,6 +12,7 @@
 - [images and sound fx](loading assets)
 - [grid demo] (grid) 
 - [rectangular grid] (rectgrid)
+- [game of life] (game of life)
 
 
 ## projects
