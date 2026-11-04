@@ -9,10 +9,10 @@
 - [perlin noise](noise)
 - [terrain generation](terrain)
 - [ collision library demo](Collision)
-- [images and sound fx](loading assets)
-- [grid demo] (grid) 
-- [rectangular grid] (rectgrid)
-- [game of life] (game of life)
+- [ images and sound fx ](loading assets)
+- [ grid demo ] (grid) 
+- [ rectangular grid ] (rectgrid)
+- [ game of life ] (game of life)
 
 
 ## projects
