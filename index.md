@@ -13,6 +13,7 @@
 - [ grid demo ] (grid) 
 - [ rectangular grid ] (rectgrid)
 - [ game of life ] (game of life)
+- [character in grid] (grid character)
 
 
 ## projects
