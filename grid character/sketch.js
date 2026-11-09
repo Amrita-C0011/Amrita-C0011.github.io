@@ -12,7 +12,8 @@ let thePlayer = {
   y:0,
 
 };
-
+let grassImg;
+let stoneImg;
 async function setup() {
   createCanvas(windowWidth, windowHeight);
   rows = Math.floor(height/CELL_SIZE);
@@ -20,6 +21,8 @@ async function setup() {
   grid = generateRandomGrid(cols, rows);
   //put player in grid
   grid[thePlayer.y][thePlayer.x] = PLAYER;
+  grassImg = await loadImage("leaves 1.png");
+  stoneImg = await loadImage("stone wall 8.png");
 }
 
 function draw() {
@@ -94,15 +97,17 @@ function displayGrid() {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (grid[y][x] === OPEN_TILE) {
-        fill('white');
+        //
+        image(stoneImg, x* CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       }
       else if (grid[y][x] === IMPASSABLE) {
-        fill('black');
+        image(grassImg, x* CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+
       }
       else if (grid[y][x] === PLAYER) {
         fill('red');
+        square(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE);
       }
-      square(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE);
     }
   }
 }
