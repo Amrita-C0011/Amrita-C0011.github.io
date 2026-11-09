@@ -18,4 +18,4 @@
 
 ## projects
 - [Interactive scene + object notation and arrays ](scene)
-- [ 2d array assignment ] (2d array assign)
+- [ 2d array assignment ] (2d array game)
