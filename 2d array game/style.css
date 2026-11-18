@@ -5,10 +5,10 @@ html, body {
   height:100%
 }
 
-#the_canvas {
+#the-canvas {
   width: 100vw;
   height: 100vh;
-  display: displayGrid;
+  display: grid;
   place-items: center;
 }
 

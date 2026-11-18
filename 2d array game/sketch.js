@@ -9,11 +9,10 @@
 const CELL_SIZE = 180;
 let rows;
 let cols;
-let drawGrid;
 
 async function setup() {
-  rows = Math.floor(windowHeight*0.85/CELL_SIZE);
-  cols = Math.floor(windowWidth*0.85/CELL_SIZE);
+  rows = Math.floor(windowHeight* 0.85/CELL_SIZE);
+  cols = Math.floor(windowWidth* 0.85/CELL_SIZE);
   let win = createCanvas(cols*CELL_SIZE, rows*CELL_SIZE);
   win.parent("the-canvas");
 }
