@@ -9,14 +9,14 @@
 - [perlin noise](noise)
 - [terrain generation](terrain)
 - [ collision library demo](Collision)
-- [ images and sound fx ](loading assets)
-- [ grid demo ] (grid) 
-- [ rectangular grid ] (rectgrid)
-- [ game of life ] (game of life)
-- [character in grid] (grid character)
+- [ images and sound fx](loadingassets)
+- [ grid demo](grid) 
+- [ rectangular grid](rectgrid)
+- [ game of life ](gameoflife)
+- [character in grid](gridcharacter)
 -
 
 
 ## projects
 - [Interactive scene + object notation and arrays ](scene)
-- [ 2d array assignment ] (2d array game)
+- [2d array assignment](2darraygame)

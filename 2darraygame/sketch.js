@@ -62,11 +62,11 @@ function keyPressed() {
   }
 }
 
- // keeping witch inside the grid
+// keeping witch inside the grid
 function movePlayer(x, y) {
   if (x >= 0 && x < cols && y >= 0 && y < rows) {
 
     character.x = x;
     character.y = y;
-}
+  }
 }
