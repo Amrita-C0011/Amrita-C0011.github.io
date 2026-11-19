@@ -28,6 +28,8 @@ async function setup() {
 function draw() {
   background(250);
   displayGrid();
+  ingredientSpawn();
+
 }
 
 
@@ -69,4 +71,16 @@ function movePlayer(x, y) {
     character.x = x;
     character.y = y;
   }
+}
+
+async function ingredientSpawn(){
+  let apple  = await loadImage ("apple.png");
+  let beetroot  = await loadImage ("beetroot.png");
+  let bellPepper = await loadImage ("bell pepper red.png");
+  let cheese  = await loadImage ("cheese brie.png");
+  let cherry  = await loadImage ("cherry.png");
+  let chicken  = await loadImage ("chicken wing.png");
+  let pumpkin  = await loadImage ("pimpkin.png");
+  let raspberry  = await loadImage ("raspberry.png");
+
 }
