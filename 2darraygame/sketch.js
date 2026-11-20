@@ -44,6 +44,7 @@ async function setup() {
   //   { img: await loadImage("chicken wing.png"), x: floor(random(cols)), y: floor(random(rows)) }
   ];
 
+
   ingredients.x = floor(random(cols));
   ingredients.y = floor(random(rows));
  
@@ -70,7 +71,10 @@ function displayGrid() {
     }
   }
   image(charIMG, character.x * CELL_SIZE, character.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-  image (currentIngredient,ingredients.x * CELL_SIZE, ingredients.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  let fruitIMG = [0,1,2,3,4];
+  for (let fruit of fruitIMG)  {
+    image (currentIngredient,ingredients.x * CELL_SIZE, ingredients.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  }
 }
 
 // moving the witch around
@@ -100,9 +104,9 @@ function movePlayer(x, y) {
 
 // async function ingredientSpawn(){
   
-  // let beetroot  = await loadImage ("beetroot.png");
-  // let bellPepper = await loadImage ("bell pepper red.png");
-  // let cherry  = await loadImage ("cherry.png");
-  // let chicken  = await loadImage ("chicken wing.png");
+// let beetroot  = await loadImage ("beetroot.png");
+// let bellPepper = await loadImage ("bell pepper red.png");
+// let cherry  = await loadImage ("cherry.png");
+// let chicken  = await loadImage ("chicken wing.png");
 
 // }
