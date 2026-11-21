@@ -2,52 +2,50 @@
 // Amrita C. 
 // NOvember 9th
 //
-// Extra for Experts:
 
 // setting up the grid 
 const CELL_SIZE = 150;
 let rows= 4; //hard coding in the amount of rows and columns so that the grid dosent stretch when made fullscreen
 let cols = 4;
-let bg;
 let apple;
+let bg;
 
 let charIMG;
 let character = {
   x :0, 
   y: 0,
 };
-let ingredients= {
-  x: 0,
-  y: 0,
-};
 
 let ingredientIMG = [];
-let currentIngredient;
+let ingredientData = []; // to hold all of the image files with their individual x and y positions 
 
 async function setup() {
 
   let win = createCanvas(cols*CELL_SIZE, rows*CELL_SIZE);
   win.parent("the-canvas");
 
-  bg = await loadImage ("witch house.png");
+   bg = await loadImage ("witch house.png");
+  // bg.parent("bg-image");
   charIMG = await loadImage ("witch bg removed.png");
+
   ingredientIMG = [  
     await loadImage ("apple.png"),
     await loadImage ("beetroot.png"),
     await loadImage ("bell pepper red.png"),
     await loadImage ("cherry.png"),
     await loadImage ("chicken wing.png"),
-  //   { img: await loadImage("apple.png"), x: floor(random(cols)), y: floor(random(rows)) },
-  //   { img: await loadImage("beetroot.png"), x: floor(random(cols)), y: floor(random(rows)) },
-  //   { img: await loadImage("bell pepper red.png"), x: floor(random(cols)), y: floor(random(rows)) },
-  //   { img: await loadImage("cherry.png"), x: floor(random(cols)), y: floor(random(rows)) },
-  //   { img: await loadImage("chicken wing.png"), x: floor(random(cols)), y: floor(random(rows)) }
+    await loadImage ("cheese brie.png"),
+    await loadImage ("raspberry.png"),
+
   ];
 
-  ingredients.x = floor(random(cols));
-  ingredients.y = floor(random(rows));
- 
-  currentIngredient = random(ingredientIMG);
+  for (let img of ingredientIMG) {
+    ingredientData.push({
+      img: img, // assigns individual random coordinates to each ingredient
+      x: floor(random(cols)),
+      y: floor(random(rows))
+    });
+  }
 }
 
 function draw() {
@@ -59,7 +57,10 @@ function draw() {
 
 
 function displayGrid() {
+  // tint();
   image(bg,0,0,cols*CELL_SIZE, rows*CELL_SIZE);
+
+  
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
@@ -69,8 +70,11 @@ function displayGrid() {
       noFill();
     }
   }
+  // ingredient data now has every img and will draw themn here 
+  for (let item of ingredientData) {
+    image(item.img, item.x * CELL_SIZE, item.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  }
   image(charIMG, character.x * CELL_SIZE, character.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-  image (currentIngredient,ingredients.x * CELL_SIZE, ingredients.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 }
 
 // moving the witch around
