@@ -19,6 +19,13 @@ let character = {
 let ingredientIMG = [];
 let ingredientData = []; // to hold all of the image files with their individual x and y positions 
 
+//timer variables ( based off of millis demo) 
+let gameTimer = 5;
+let timeLeft = gameTimer;
+let startTime = 0;
+let gameStart = false; // game state
+let gameOver = false;
+
 async function setup() {
 
   let win = createCanvas(cols*CELL_SIZE, rows*CELL_SIZE);
@@ -51,7 +58,7 @@ async function setup() {
 function draw() {
   background(250);
   displayGrid();
-  // ingredientSpawn();
+  timer();
 
 }
 
@@ -76,6 +83,31 @@ function displayGrid() {
   }
   image(charIMG, character.x * CELL_SIZE, character.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 }
+function timer() {
+  //start timer
+  if (!gameStart) {
+    startTime = millis();
+    timerStarted = true;
+  }
+
+  let timePassed = millis() -startTime;
+  let millisLeft = (gameTimer * 1000)- timePassed;
+  
+  
+  timeLeft = Math.floor(millisLeft / 1000);
+
+  if (timeLeft=== 0) {
+    gameOver = true;
+
+  }
+  // Draw the timer text on the canvas
+    textSize(40);
+    textAlign(CENTER, CENTER);
+    fill(255, 0, 0);
+    text("Time's Up!", width / 2, height / 2);
+
+    noLoop();
+}
 
 // moving the witch around
 function keyPressed() {
@@ -95,18 +127,26 @@ function keyPressed() {
 
 // keeping witch inside the grid
 function movePlayer(x, y) {
-  if (x >= 0 && x < cols && y >= 0 && y < rows) {
+  if (!gameOver && x >= 0 && x < cols && y >= 0 && y < rows) {
 
     character.x = x;
     character.y = y;
+
+    collisionDetection();
   }
 }
 
-// async function ingredientSpawn(){
-  
-  // let beetroot  = await loadImage ("beetroot.png");
-  // let bellPepper = await loadImage ("bell pepper red.png");
-  // let cherry  = await loadImage ("cherry.png");
-  // let chicken  = await loadImage ("chicken wing.png");
+function collisionDetection(){
+  // check loop backwards so nothing is left out 
+  for ( let i = ingredientData.length - 1; i >= 0; i--){ //  set i velue to length - 1 becuase lenht is 3 but index is 2 
+    let item = ingredientData[i];
 
-// }
+    if (character.x === item.x && character.y === item.y) {
+      console.log("Collected an ingredient!"); // check if they collide 
+      // working!
+
+      ingredientData.splice(i, 1); // get itm of the screen, loong backwadsmakes sure that nothing gets left out 
+
+    }
+  }
+}
