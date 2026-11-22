@@ -20,7 +20,7 @@ let ingredientIMG = [];
 let ingredientData = []; // to hold all of the image files with their individual x and y positions 
 
 //timer variables ( based off of millis demo) 
-let gameTimer = 5;
+let gameTimer = 6000;
 let timeLeft = gameTimer;
 let startTime = 0;
 let gameStart = false; // game state
@@ -87,19 +87,24 @@ function timer() {
   //start timer
   if (!gameStart) {
     startTime = millis();
-    timerStarted = true;
+    gameStart = true;
   }
 
-  let timePassed = millis() -startTime;
-  let millisLeft = (gameTimer * 1000)- timePassed;
+  if (!gameOver){
+    let timePassed = millis() -startTime;
+    timeLeft = gameTimer - timePassed;
+  }
   
+  textSize(30);
   
-  timeLeft = Math.floor(millisLeft / 1000);
+  fill(255);
+  textAlign(LEFT,TOP);
+  text("00:0" + Math.floor(timeLeft/1000), width/2, height/2);
 
-  if (timeLeft=== 0) {
+
+  if (timeLeft <= 0 && !gameOver) {
     gameOver = true;
 
-  }
   // Draw the timer text on the canvas
     textSize(40);
     textAlign(CENTER, CENTER);
@@ -107,8 +112,8 @@ function timer() {
     text("Time's Up!", width / 2, height / 2);
 
     noLoop();
-}
-
+  }
+  }
 // moving the witch around
 function keyPressed() {
   if (key === RIGHT_ARROW) {
@@ -127,7 +132,7 @@ function keyPressed() {
 
 // keeping witch inside the grid
 function movePlayer(x, y) {
-  if (!gameOver && x >= 0 && x < cols && y >= 0 && y < rows) {
+  if ( x >= 0 && x < cols && y >= 0 && y < rows) {
 
     character.x = x;
     character.y = y;
@@ -142,8 +147,6 @@ function collisionDetection(){
     let item = ingredientData[i];
 
     if (character.x === item.x && character.y === item.y) {
-      console.log("Collected an ingredient!"); // check if they collide 
-      // working!
 
       ingredientData.splice(i, 1); // get itm of the screen, loong backwadsmakes sure that nothing gets left out 
 
