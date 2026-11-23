@@ -2,6 +2,8 @@
 // Amrita C. 
 // November 9th
 //
+// Extra for experts:
+// tried using a do...while loop, reference: https://www.youtube.com/watch?v=v9zgD8wjtbw
 
 //Variables
 const CELL_SIZE = 150;
@@ -50,14 +52,43 @@ async function setup() {
     await loadImage ("raspberry.png"),
   ];
 
-  // giving the images their individual x and y positions
+// give individual unique locations to each ingredient
   for (let img of ingredientIMG) {
-    ingredientData.push({
+    let spot = uniqueSpot();
+
+  ingredientData.push({
       img: img,
-      x: floor(random(cols)),
-      y: floor(random(rows))
+      x: spot.x,
+      y: spot.y
     });
   }
+}
+
+function uniqueSpot() {
+  let randomX; 
+  let randomY;
+  let overlap;
+
+  do { // do while loop becuase of uncertain amount of repetition
+    overlap = false;
+    randomX = floor(random(cols));
+    randomY = floor(random(rows));
+
+    // prevent overlap with the witch
+    if (randomX === character.x && randomY === character.y) {
+      overlap= true;
+    }
+
+    //prevent overlap witht the other ingredients
+    for(let item of ingredientData) {
+      if (item.x=== randomX && item.y ===randomY) {
+        overlap = true;
+      }
+    }
+  }
+  while (overlap);
+
+  return { x: randomX, y: randomY };
 }
 
 function draw() {
