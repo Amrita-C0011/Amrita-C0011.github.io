@@ -15,6 +15,7 @@ let character = {
   x :0, 
   y: 0,
 };
+let counter = 0;
 
 let ingredientIMG = [];
 let ingredientData = []; // to hold all of the image files with their individual x and y positions 
@@ -71,10 +72,10 @@ function displayGrid() {
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      square(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE);
       stroke('gray');
       strokeWeight(4);
       noFill();
+      square(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE);
     }
   }
   // ingredient data now has every img and will draw themn here 
@@ -98,22 +99,39 @@ function timer() {
   textSize(30);
   
   fill(255);
-  textAlign(LEFT,TOP);
-  text("00:0" + Math.floor(timeLeft/1000), width/2, height/2);
+  text("00:0" + Math.floor(timeLeft/1000), 260, 310);
 
 
   if (timeLeft <= 0 && !gameOver) {
     gameOver = true;
+    clear();
+    background("purple");
 
   // Draw the timer text on the canvas
-    textSize(40);
+    textSize(30);
     textAlign(CENTER, CENTER);
-    fill(255, 0, 0);
-    text("Time's Up!", width / 2, height / 2);
+    fill(255, 255, 255);
+    text("The hungry witch has cursed you!!",300,300);
 
     noLoop();
   }
+  else if ( timeLeft > 0 && !gameOver && counter===7) {
+    gameOver = true;
+    clear();
+    background("darkGreen");
+
+
+    textSize(60);
+    textAlign(CENTER, CENTER);
+    fill(0, 0, 0);
+    text("The soup is ready!!",300,300);
+
+    noLoop();
+
   }
+  
+  }
+
 // moving the witch around
 function keyPressed() {
   if (key === RIGHT_ARROW) {
@@ -149,7 +167,7 @@ function collisionDetection(){
     if (character.x === item.x && character.y === item.y) {
 
       ingredientData.splice(i, 1); // get itm of the screen, loong backwadsmakes sure that nothing gets left out 
-
+      counter++;
     }
   }
 }
