@@ -14,6 +14,7 @@
 - [ rectangular grid](rectgrid)
 - [ game of life ](gameoflife)
 - [character in grid](gridcharacter)
+- [fireworks/particle demo](fireworks/particle)
 -
 
 
